@@ -133,7 +133,6 @@
     width: 100%;
     text-align: center;
     margin-top: 50px; /* Pushes the title down a bit */
-    margin-left: 0px;
   }
   
   /* Ensure the typewriter text is centered */
@@ -408,7 +407,7 @@ body {
   margin-bottom: 5rem;
   position: relative;
   text-align: justify;
-  margin-left: 175px;
+  /* margin-left: 175px; */
 }
 
 
