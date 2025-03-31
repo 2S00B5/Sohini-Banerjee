@@ -172,7 +172,6 @@ const sr = ScrollReveal({
   reset: true,
   mobile: true,
   useDelay: 'always',
-  viewFactor: 0.2,
 });
 
 // sr.reveal(".hero__content, .about__content");
