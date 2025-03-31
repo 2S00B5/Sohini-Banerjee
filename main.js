@@ -155,28 +155,52 @@ window.addEventListener("scroll", () => {
     header.classList.remove("header--scroll");
   }
 });
-
+if (typeof ScrollReveal === 'function') {
+  // Your ScrollReveal code here
+  const sr = ScrollReveal({
+    // Configuration as above
+  });
+  // Reveal calls as above
+} else {
+  console.error('ScrollReveal is not loaded correctly');
+}
 // ScrollReveal animations
 const sr = ScrollReveal({
   duration: 2000,
   distance: "100px",
-  delay: 400,
-  reset: false,
+  delay: 300,
+  reset: true,
+  mobile: true,
+  useDelay: 'always',
+  viewFactor: 0.2,
 });
 
-sr.reveal(".hero__content, .about__content");
-sr.reveal(".hero__img", { origin: "top" });
+// sr.reveal(".hero__content, .about__content");
+// sr.reveal(".hero__img", { origin: "top" });
 
-sr.reveal(
-  ".hero__info-wrapper, .skills__title, .skills__content, .qualification__name, .qualification__item, .service__card, .project__content, .testimonial__wrapper, .footer__content",
-  {
-    delay: 500,
-    interval: 100,
-  }
-);
+// sr.reveal(
+//   ".hero__info-wrapper, .skills__title, .skills__content, .qualification__name, .qualification__item, .service__card, .project__content, .testimonial__wrapper, .footer__content",
+//   {
+//     delay: 500,
+//     interval: 100,
+//   }
+// );
 
-sr.reveal(".qualification__footer-text, .contact__content", {
-  origin: "left",
-});
+// sr.reveal(".qualification__footer-text, .contact__content", {
+//   origin: "left",
+// });
 
-sr.reveal(".qualification__footer .btn, .contact__btn", { origin: "right" });
+// sr.reveal(".qualification__footer .btn, .contact__btn", { origin: "right" });
+
+sr.reveal('.hero__content', { origin: 'bottom', delay: 200 });
+sr.reveal('.hero__img', { origin: 'top', delay: 400 });
+sr.reveal('.about__content', { origin: 'left', delay: 300 });
+sr.reveal('.skills__title', { origin: 'right', delay: 300 });
+sr.reveal('.skills__content', { origin: 'bottom', delay: 400, interval: 100 });
+sr.reveal('.qualification__name', { origin: 'left', delay: 300 });
+sr.reveal('.qualification__item', { origin: 'bottom', delay: 400, interval: 100 });
+sr.reveal('.service__card', { origin: 'bottom', delay: 400, interval: 100 });
+sr.reveal('.project__content', { origin: 'bottom', delay: 400, interval: 100 });
+sr.reveal('.contact__content', { origin: 'left', delay: 400 });
+sr.reveal('.contact__btn', { origin: 'right', delay: 400 });
+sr.reveal('.footer__content', { origin: 'bottom', delay: 400, interval: 100 });
