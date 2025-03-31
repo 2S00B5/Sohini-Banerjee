@@ -155,21 +155,13 @@ window.addEventListener("scroll", () => {
     header.classList.remove("header--scroll");
   }
 });
-if (typeof ScrollReveal === 'function') {
-  // Your ScrollReveal code here
-  const sr = ScrollReveal({
-    // Configuration as above
-  });
-  // Reveal calls as above
-} else {
-  console.error('ScrollReveal is not loaded correctly');
-}
+
 // ScrollReveal animations
 const sr = ScrollReveal({
   duration: 2000,
   distance: "100px",
   delay: 300,
-  reset: true,
+  reset: false,
   mobile: true,
   useDelay: 'always',
 });
