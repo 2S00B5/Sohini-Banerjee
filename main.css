@@ -82,6 +82,9 @@
   .footer__content {
     width: 100%;
   }
+  .footer__social-list {
+    justify-content: center;
+  }
 }
 @media screen and (max-width: 480px) {
   :root {
