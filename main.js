@@ -157,13 +157,92 @@ window.addEventListener("scroll", () => {
 });
 
 // ScrollReveal animations
-const sr = ScrollReveal({
-  duration: 2000,
-  distance: "100px",
-  delay: 300,
-  reset: false,
-  mobile: true,
-  useDelay: 'always',
+// Add at the top of your script or before ScrollReveal usage
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if ScrollReveal is available
+  if (typeof ScrollReveal === 'function') {
+    // ScrollReveal animations with mobile-optimized settings
+    const sr = ScrollReveal({
+      duration: 1500,       // Slightly reduced for mobile
+      distance: "50px",     // Reduced distance for mobile
+      delay: 200,
+      reset: false,         // Important for mobile
+      mobile: true,
+      useDelay: 'once',     // Better for mobile performance
+      viewFactor: 0.1       // Element only needs to be 10% visible
+    });
+
+    // Simplified animations with reduced delays for mobile
+    const isMobile = window.innerWidth < 768;
+    
+    if (isMobile) {
+      // Use simpler animations for mobile with shorter delays
+      sr.reveal('.hero__content, .hero__img', { 
+        origin: 'bottom', 
+        delay: 100,
+        interval: 50
+      });
+      
+      sr.reveal('.about__content, .skills__title, .skills__content, .qualification__name, .qualification__item, .service__card, .project__content, .testimonial__wrapper, .contact__content, .contact__btn, .footer__content', {
+        origin: 'bottom',
+        delay: 150,
+        interval: 50
+      });
+    } else {
+      // Your existing animations for desktop
+      sr.reveal('.hero__content', { origin: 'bottom', delay: 200 });
+      sr.reveal('.hero__img', { origin: 'top', delay: 400 });
+      sr.reveal('.about__content', { origin: 'left', delay: 300 });
+      sr.reveal('.skills__title', { origin: 'right', delay: 300 });
+      sr.reveal('.skills__content', { origin: 'bottom', delay: 400, interval: 100 });
+      sr.reveal('.qualification__name', { origin: 'left', delay: 300 });
+      sr.reveal('.qualification__item', { origin: 'bottom', delay: 400, interval: 100 });
+      sr.reveal('.service__card', { origin: 'bottom', delay: 400, interval: 100 });
+      sr.reveal('.project__content', { origin: 'bottom', delay: 400, interval: 100 });
+      sr.reveal('.contact__content', { origin: 'left', delay: 400 });
+      sr.reveal('.contact__btn', { origin: 'right', delay: 400 });
+      sr.reveal('.footer__content', { origin: 'bottom', delay: 400, interval: 100 });
+    }
+    
+    console.log("ScrollReveal initialized successfully");
+  } else {
+    console.error("ScrollReveal not loaded - applying CSS fallback animations");
+    
+    // Add CSS fallback animations
+    const elements = document.querySelectorAll('.hero__content, .hero__img, .about__content, .skills__title, .skills__content, .qualification__name, .qualification__item, .service__card, .project__content, .testimonial__wrapper, .contact__content, .contact__btn, .footer__content');
+    
+    elements.forEach((el, index) => {
+      el.style.opacity = '0';
+      el.style.animation = `fadeInUp 1s ease forwards ${index * 0.1}s`;
+    });
+    
+    // Add the CSS animation
+    const css = document.createElement('style');
+    css.type = 'text/css';
+    css.innerHTML = `
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `;
+    document.head.appendChild(css);
+  }
+});
+
+// Fix for VANTA scroll effect - only apply if effect exists
+window.addEventListener("scroll", () => {
+  let scrollY = window.scrollY;
+  if (typeof effect !== 'undefined') {
+    effect.setOptions({
+      cameraZ: 50 + scrollY * 0.3 // Moves background elements
+    });
+  }
 });
 
 // sr.reveal(".hero__content, .about__content");
@@ -183,15 +262,3 @@ const sr = ScrollReveal({
 
 // sr.reveal(".qualification__footer .btn, .contact__btn", { origin: "right" });
 
-sr.reveal('.hero__content', { origin: 'bottom', delay: 200 });
-sr.reveal('.hero__img', { origin: 'top', delay: 400 });
-sr.reveal('.about__content', { origin: 'left', delay: 300 });
-sr.reveal('.skills__title', { origin: 'right', delay: 300 });
-sr.reveal('.skills__content', { origin: 'bottom', delay: 400, interval: 100 });
-sr.reveal('.qualification__name', { origin: 'left', delay: 300 });
-sr.reveal('.qualification__item', { origin: 'bottom', delay: 400, interval: 100 });
-sr.reveal('.service__card', { origin: 'bottom', delay: 400, interval: 100 });
-sr.reveal('.project__content', { origin: 'bottom', delay: 400, interval: 100 });
-sr.reveal('.contact__content', { origin: 'left', delay: 400 });
-sr.reveal('.contact__btn', { origin: 'right', delay: 400 });
-sr.reveal('.footer__content', { origin: 'bottom', delay: 400, interval: 100 });
