@@ -73,9 +73,10 @@
   .footer__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem; /* Reduced from 3rem to 2rem */
     align-items: center;
     text-align: center;
+    padding: 3rem 0; 
   }
   
   .footer__content {
@@ -638,7 +639,8 @@ body {
 .footer__wrapper {
   border-bottom: 1px solid var(--color-bg-secondary);
   padding: 5rem 0;
-  gap: 70rem;
+  gap: 2rem;
+  align-items: baseline;
 }
 
 .footer__title {
